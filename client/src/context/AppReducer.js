@@ -7,6 +7,13 @@ export default (state, action) => {
         loading: false,
         transactions: action.payload,
       };
+
+    case 'GET_ONE_TRANSACTION':
+      return {
+        ...state,
+        loading: false,
+        transaction: action.payload,
+      };
     case 'DELETE_TRANSACTION':
       return {
         ...state,

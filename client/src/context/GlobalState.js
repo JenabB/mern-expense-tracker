@@ -5,6 +5,7 @@ import AppReducer from './AppReducer';
 // Initial state
 const initialState = {
   transactions: [],
+  transaction: [],
   error: null,
   loading: true,
 };
@@ -76,6 +77,7 @@ export const GlobalProvider = ({ children }) => {
         error: state.error,
         loading: state.loading,
         getTransactions,
+
         deleteTransaction,
         addTransaction,
       }}

@@ -20,12 +20,37 @@ exports.getTransactions = async (req, res, next) => {
   }
 };
 
+// get one transaction
+// GET /api/v1/transaction/:id
+// public
+exports.getTransactionById = async (req, res, next) => {
+  try {
+    const transaction = await Transaction.findById(req.params.id);
+
+    if (!transaction) {
+      return res.status(404).json({
+        success: false,
+        error: 'No transaction found',
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      data: transaction,
+    });
+  } catch (error) {
+    return res.send(500).json({
+      success: false,
+      error: 'server error',
+    });
+  }
+};
+
 // add transactions
 // POST /api/v1/transactions
 // public
 exports.addTransaction = async (req, res, next) => {
   try {
-    const { text, amount } = req.body;
+    const { text, description, amount } = req.body;
 
     const transaction = await Transaction.create(req.body);
 

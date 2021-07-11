@@ -16,12 +16,12 @@ export const IncomeExpenses = () => {
     -1;
 
   return (
-    <div className="flex justify-evenly text-white text-center">
-      <div className="bg-green-500 w-full p-4">
+    <div className="flex justify-evenly text-white text-center w-full">
+      <div className="bg-green-500 w-1/2 p-4">
         <h4>Income</h4>
         <p className="">Rp {numberWithCommas(income)}</p>
       </div>
-      <div className="bg-red-500 w-full p-4">
+      <div className="bg-red-500 w-1/2 p-4">
         <h4>Expense</h4>
         <p className="">Rp -{numberWithCommas(expense)}</p>
       </div>
