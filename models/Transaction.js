@@ -6,6 +6,11 @@ const TranscationSchema = new mongoose.Schema({
     trim: true,
     required: [true, 'Please add some text'],
   },
+  // description: {
+  //   type: String,
+  //   trim: true,
+  //   required: [true, 'Please add some description'],
+  // },
   amount: {
     type: Number,
     required: [true, 'please add positive or negative number'],

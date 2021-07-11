@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 const dotenv = require('dotenv');
 const colors = require('colors');
 const morgan = require('morgan');
@@ -11,6 +12,8 @@ const transactions = require('./routes/transactions');
 const app = express();
 
 app.use(express.json());
+
+app.use(cors());
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
