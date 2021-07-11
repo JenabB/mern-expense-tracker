@@ -16,14 +16,14 @@ export const IncomeExpenses = () => {
     -1;
 
   return (
-    <div className="inc-exp-container">
-      <div>
+    <div className="flex justify-evenly text-white text-center">
+      <div className="bg-green-500 w-full p-4">
         <h4>Income</h4>
-        <p className="money plus">{numberWithCommas(income)}</p>
+        <p className="">Rp {numberWithCommas(income)}</p>
       </div>
-      <div>
+      <div className="bg-red-500 w-full p-4">
         <h4>Expense</h4>
-        <p className="money minus">{numberWithCommas(expense)}</p>
+        <p className="">Rp -{numberWithCommas(expense)}</p>
       </div>
     </div>
   );

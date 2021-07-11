@@ -11,13 +11,13 @@ export const TransactionList = () => {
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <>
+    <div className="p-8">
       <h3>History</h3>
       <ul className="list">
         {transactions.map((transaction) => (
           <Transaction key={transaction.id} transaction={transaction} />
         ))}
       </ul>
-    </>
+    </div>
   );
 };
