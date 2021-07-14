@@ -3,7 +3,7 @@ const router = express.Router();
 const {
   getTransactions,
   getTransactionById,
-  editTransaction,
+  // editTransaction,
   addTransaction,
   deleteTransaction,
 } = require('../controllers/transactions');
@@ -13,7 +13,7 @@ router.route('/').get(getTransactions).post(addTransaction);
 router
   .route('/:id')
   .get(getTransactionById)
-  .put(editTransaction)
+  // .put(editTransaction)
   .delete(deleteTransaction);
 
 module.exports = router;
