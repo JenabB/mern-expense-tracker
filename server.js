@@ -36,7 +36,7 @@ if (process.env.NODE_ENV === "production") {
       }
     };
 
-    let filePath = req.path;
+    let filePath = req.path + 'index.html';
 
     res.sendfile(filePath, options, (err) => {
       if (err) {
