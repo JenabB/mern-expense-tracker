@@ -20,13 +20,11 @@ if (process.env.NODE_ENV === "development") {
 }
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  // app.use(express.static("client/build"));
+  app.use(express.static(path.join(__dirname, 'client/build')))
   app.use("/api/v1/transactions", transactions);
   app.get("*", (req, res) => 
-    res.render('index', function(err,html) {
-      return res.send(html)
-    })
-    //res.sendFile(req.params.name, path.resolve(__dirname, "client", "build", "index.html"))
+    res.sendFile(path.toString(), path.resolve(__dirname, "client", "build", "index.html"))
   );
 }
 
