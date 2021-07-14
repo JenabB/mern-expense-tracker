@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === "production") {
   // );
   app.get("*", (req,res,next) => {
     const options = {
-      root: path.join(__dirname, 'client/build'),
+      root: path.resolve(__dirname, "client", "build"),
       dotfiles: 'deny',
       headers: {
         'x-timestamp': Date.now(),
