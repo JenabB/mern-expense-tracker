@@ -4,11 +4,12 @@
   "description": "backend",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
+    "start": "NODE_ENV=production node server",
+    "build": "npm build --prefix client",
     "server": "nodemon server",
     "client": "npm start --prefix client",
     "dev": "concurrently \" npm run server \" \" npm run client \"",
-    "heroku-postbuild": "cd client && NPM_CONFIG_PRODUCTION=false npm install && run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true cd client && npm install && npm run build && cd .. && npm start"
   },
   "author": "Yogi Surya Pranata",
   "license": "ISC",
@@ -25,5 +26,8 @@
     "concurrently": "^6.2.0",
     "nodemon": "^2.0.10"
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000",
+  "engines": {
+    "node": "14.x"
+  }
 }
