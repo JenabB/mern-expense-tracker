@@ -1,11 +1,12 @@
 import React, { createContext, useReducer } from 'react';
 import axios from 'axios';
 import AppReducer from './AppReducer';
+import Swal from 'sweetalert2';
 
 // Initial state
 const initialState = {
   transactions: [],
-  transaction: [],
+  total_balance: 0,
   error: null,
   loading: true,
 };
@@ -58,9 +59,38 @@ export const GlobalProvider = ({ children }) => {
 
     try {
       const res = await axios.post(`/api/v1/transactions`, transaction, config);
+      Swal.fire({
+        title: 'success',
+        text: 'Transaction Added',
+        icon: 'success',
+        showConfirmButton: 'true',
+      });
       dispatch({
         type: 'ADD_TRANSACTION',
         payload: res.data.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: 'TRANSACTION_ERROR',
+        payload: err.response.data.error,
+      });
+    }
+  }
+
+  async function editTransaction(transaction, _id) {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    try {
+      await axios.put(`/api/v1/transactions/${_id}`, transaction, config);
+      Swal.fire({
+        title: 'success',
+        text: 'Edit',
+        icon: 'success',
+        showConfirmButton: 'true',
       });
     } catch (err) {
       dispatch({
@@ -76,8 +106,9 @@ export const GlobalProvider = ({ children }) => {
         transactions: state.transactions,
         error: state.error,
         loading: state.loading,
+        total_balance: state.total_balance,
         getTransactions,
-
+        editTransaction,
         deleteTransaction,
         addTransaction,
       }}

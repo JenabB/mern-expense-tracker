@@ -1,7 +1,7 @@
 import { EditTransaction } from './EditTransaction';
 import { FaTimesCircle } from 'react-icons/fa';
 
-const EditTransModal = ({ setIsOpen }) => {
+const EditTransModal = ({ setIsOpen, _id }) => {
   return (
     <div className="modal absolute bg-white p-4 rounded-lg">
       <div className="flex justify-between">
@@ -13,7 +13,7 @@ const EditTransModal = ({ setIsOpen }) => {
           style={{ color: 'red' }}
         />
       </div>
-      <EditTransaction />
+      <EditTransaction _id={_id} />
     </div>
   );
 };

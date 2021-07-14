@@ -23,7 +23,7 @@ export const AddTransaction = () => {
 
   return (
     <>
-      <h3>Add new transaction</h3>
+      <h3 className="text-center">Add new transaction</h3>
       <form onSubmit={onSubmit}>
         <div className="form-control">
           <label htmlFor="text">Title</label>
@@ -58,7 +58,7 @@ export const AddTransaction = () => {
             required
           />
         </div>
-        <button className="text-center bg-indigo-900 w-full text-white py-4">
+        <button className="text-cente mt-4 bg-indigo-900 w-full text-white py-4">
           Add transaction
         </button>
       </form>

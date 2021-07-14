@@ -78,7 +78,26 @@ exports.addTransaction = async (req, res, next) => {
 // edit transaction
 // PUT /api/v1/transaction/:id
 // public
-exports.editTransaction = async (req, res, next) => {};
+exports.editTransaction = async (req, res, next) => {
+  try {
+    Transaction.findOneAndUpdate(
+      { _id: req.params.id },
+      req.body,
+      { new: true },
+      (err, editTransaction) => {
+        if (err) {
+          res.send(err);
+        }
+        res.json(editTransaction);
+      }
+    );
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error: 'Server Error',
+    });
+  }
+};
 
 // @desc    Delete transaction
 // @route   DELETE /api/v1/transactions/:id

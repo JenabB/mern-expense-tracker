@@ -6,6 +6,8 @@ import axios from 'axios';
 import EditTransModal from '../components/EditTransModal';
 import { FaArrowLeft, FaTrash, FaPen } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import minus from '../assets/images/transactionDetail.png';
+import plus from '../assets/images/plus.png';
 
 const Detail = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +48,7 @@ const Detail = (props) => {
   }, []);
 
   return (
-    <div className="bg-indigo-900" style={{ height: '400px' }}>
+    <div className="" style={{ height: '100vh' }}>
       <div className="flex justify-between bg-indigo-800 p-4">
         <FaArrowLeft
           className="cursor-pointer"
@@ -56,24 +58,39 @@ const Detail = (props) => {
         <div></div>
         <div></div>
       </div>
+      {transaction.amount > 0 ? (
+        <img
+          src={plus}
+          alt="header"
+          className="w-full"
+          style={{ height: '250px', objectFit: 'cover' }}
+        />
+      ) : (
+        <img
+          src={minus}
+          alt="header"
+          className="w-full"
+          style={{ height: '250px', objectFit: 'cover' }}
+        />
+      )}
       {transaction ? (
-        <div className="flex justify-between p-4">
-          <div className="text-white">
-            <h1>{transaction.text}</h1>
-            <h2>{transaction.amount}</h2>
-            <p>{transaction.description}</p>
+        <div className="flex justify-between p-4 w-full lg:w-2/4 mx-auto">
+          <div className="">
+            <h1 className="text-4xl">{transaction.text}</h1>
+            <h2>Rp {transaction.amount}</h2>
+            <p className="text-gray-400">{transaction.description}</p>
           </div>
           <div className="flex">
             <FaPen
               className="cursor-pointer mx-2"
-              style={{ color: 'white' }}
+              style={{ color: 'blue' }}
               onClick={() => setIsOpen(true)}
             />
 
             <FaTrash
               className="cursor-pointer "
               onClick={handleDelete}
-              style={{ color: 'white' }}
+              style={{ color: 'blue' }}
             />
           </div>
         </div>
@@ -82,7 +99,7 @@ const Detail = (props) => {
           <h5>Loading...</h5>
         </div>
       )}
-      {isOpen && <EditTransModal setIsOpen={setIsOpen} />}
+      {isOpen && <EditTransModal setIsOpen={setIsOpen} _id={_id} />}
     </div>
   );
 };

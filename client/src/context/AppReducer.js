@@ -8,11 +8,10 @@ export default (state, action) => {
         transactions: action.payload,
       };
 
-    case 'GET_ONE_TRANSACTION':
+    case 'GET_TOTAL_BALANCE':
       return {
         ...state,
-        loading: false,
-        transaction: action.payload,
+        total_balance: action.payload,
       };
     case 'DELETE_TRANSACTION':
       return {

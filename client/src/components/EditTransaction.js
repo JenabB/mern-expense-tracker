@@ -1,24 +1,28 @@
 import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { GlobalContext } from '../context/GlobalState';
 
-export const EditTransaction = () => {
+export const EditTransaction = ({ _id }) => {
+  console.log('edit', _id);
   const [text, setText] = useState('');
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState(0);
 
-  const { addTransaction } = useContext(GlobalContext);
+  let history = useHistory();
+
+  const { editTransaction } = useContext(GlobalContext);
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     const newTransaction = {
-      id: Math.floor(Math.random() * 100000000),
       text,
       description,
       amount: +amount,
     };
 
-    addTransaction(newTransaction);
+    editTransaction(newTransaction, _id);
+    history.push('/');
   };
 
   return (
